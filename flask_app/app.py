@@ -19,7 +19,7 @@ def build_array(s,e,t):
 	for i in [s,e,t]:
 		
 		d=i.__dict__
-		print(d)
+		#print(d)
 		
 		formatted={}
 		for k in keymap:

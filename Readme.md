@@ -29,25 +29,39 @@ Right now I just have a years endpoint.
 
 Calling http://127.0.0.1:5000/get_years/1835,1836
 
-Will execute the redisgraph query ```match (enslaver:person) - [t:sold|bought|transported] -> (enslaved:person) where t.arrival_year>=$minyear AND t.arrival_year<=$maxyear return enslaver,t,enslaved```
+Will execute the redisgraph query ```match (enslaving_person:person) - [enslavement:enslaved] -> (enslaved_person:person) where enslavement.arrival_year>=$minyear AND enslavement.arrival_year<=$maxyear return enslaving_person,enslavement,enslaved_person```
 
-And return source-edge-target data in json format readable by this observable notebook: https://observablehq.com/@johnmulligan/d3-force-directed-graph-on-canvas-with-drag-pan-and-zoom
+And return source-edge-target data in a json format readable by this observable notebook: https://observablehq.com/@johnmulligan/d3-force-directed-graph-on-canvas-with-drag-pan-and-zoom
 
 In principle, then, we have a pipeline!
 
 
+```
+nodes	
+	0	
+		group	"enslavers"
+		id	63584
+		label	"location: New Orleans"
+		name	"Green, John"
+		size	1
+...
+links	
+	0	
+		group	"enslaved: bought"
+		id	108
+		source	63584
+		target	2859
+...
+```
 
-
-
-
-## Built in Levenstein search
+## Built in Levenstein search!
 
 * https://oss.redis.com/redisearch/Query_Syntax/#fuzzy_matching
 * https://oss.redis.com/redisgraph/commands/#full-text-indexes
-* and above all https://github.com/RedisGraph/RedisGraph/issues/853#issuecomment-571019701
+* https://github.com/RedisGraph/RedisGraph/issues/853#issuecomment-571019701
 
 
-## Other links I used
+## Other docs I used
 
 * https://developer.redis.com/explore/redisinsight/redisgraph/
 * https://oss.redis.com/redisgraph/commands/
