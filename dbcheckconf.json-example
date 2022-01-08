@@ -1,0 +1,7 @@
+{
+  "user": "",
+  "password": "",
+  "host": ""
+  "database":"",
+  "auth_plugin":"mysql_native_password"
+}
